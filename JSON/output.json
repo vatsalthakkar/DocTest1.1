@@ -1,0 +1,19 @@
+{
+  "base": {
+    "word_count": 2697,
+    "nouns": 666,
+    "adjectives": 137,
+    "verbs": 119
+  },
+  "test": {
+    "word_count": 2726,
+    "nouns": 621,
+    "adjectives": 124,
+    "verbs": 109
+  },
+  "verdict": {
+    "testStatus": "ACCEPTED",
+    "testScore": 79.18320152442556,
+    "testNotes": "SECOND CLASS DOCUMENT"
+  }
+}

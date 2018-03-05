@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Compare two documents</title>
+		<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	</head>
+	<body>
+
+	<div class="container">
+	  <h1 class="display-4">DocTest</h1>
+	  <p class="lead">Welcome to my site. Here you can compare two documents and compare similarity between them</p>
+	  <hr class="my-4">
+  	<div class="card text-center">
+	  <div class="card-header">
+	    Results
+	  </div>
+	  <div class="card-body">
+	    <p class="card-text" id="base"><strong>Base document Details</strong></p>
+		    <p class="  card-text" id="wordsbase"></p>
+		    <p class=" card-text" id="nounsbase"></p>
+		    <p class=" card-text" id="verbsbase"></p>
+		    <p class=" card-text" id="adjectivesbase"></p>
+	    <p class="card-text" id="test"><strong>Test Document Details</strong></p>
+	    	<p class="  card-text" id="wordstest"></p>
+		    <p class=" card-text" id="nounstest"></p>
+		    <p class=" card-text" id="verbstest"></p>
+		    <p class=" card-text" id="adjectivestest"></p>
+	    <p class="card-text" id="verdict"><strong> Verdict</strong></p>
+	    	<p class="  card-text" id="status"></p>
+		    <p class=" card-text" id="score"></p>
+		    <p class=" card-text" id="note"></p>
+	  </div>
+	</div>
+	<button class="text-center" onclick="getData()">Get Result</button>
+	</div>
+
+
+	 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+		<script type="text/javascript">
+		//This function will be called on click and show the result
+			function getData() {
+			  var xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			    var myArr=JSON.parse(this.responseText);
+				
+				document.getElementById('wordsbase').innerHTML="Base document word count:- "+JSON.stringify(myArr.base.word_count);
+				document.getElementById('nounsbase').innerHTML="Base document noun count:- "+JSON.stringify(myArr.base.nouns);
+				document.getElementById('verbsbase').innerHTML="Base document verb count:- "+JSON.stringify(myArr.base.verbs);
+				document.getElementById('adjectivesbase').innerHTML="Base document adjectives count:- "+JSON.stringify(myArr.base.adjectives);
+
+				document.getElementById('wordstest').innerHTML="Test document word count:- "+JSON.stringify(myArr.test.word_count);
+				document.getElementById('nounstest').innerHTML="Test document noun count:- "+JSON.stringify(myArr.test.nouns);
+				document.getElementById('verbstest').innerHTML="Test document verb count:- "+JSON.stringify(myArr.test.verbs);
+				document.getElementById('adjectivestest').innerHTML="Test document adjectives count:- "+JSON.stringify(myArr.test.adjectives);
+
+
+				document.getElementById('status').innerHTML="Base document word count:- "+JSON.stringify(myArr.verdict.testStatus);
+				document.getElementById('score').innerHTML="Base document noun count:- "+JSON.stringify(myArr.verdict.testScore);
+				document.getElementById('note').innerHTML="Base document verb count:- "+JSON.stringify(myArr.verdict.testNotes);
+			    }
+			  };
+			  xhttp.open("GET", "http://localhost:3000/db", true);
+			  xhttp.send();
+			}
+		</script>
+	</body>
+</html>
