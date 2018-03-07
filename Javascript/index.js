@@ -66,17 +66,17 @@ for(var i=0;i<testTag.length;i++){
 
 //finding the similarity between both documents
 var match = natural.JaroWinklerDistance(testData,stdData);
-console.log('Similarity between test and base:'+(match*100)+'%');
+
 
 //Looking for spelling mistakes w.r.t standard document
 var corpus = stdWords;
 var spellcheck = new natural.Spellcheck(corpus);
 var spellErr=0;
 for(var i=0;i<testWords.length;i++){
-	if(!spellcheck.isCorrect(testWords[i]))
+	if(!spellcheck.isCorrect(testWords[i])){
 		spellErr++;
+	}
 }
-console.log('#Spelling errors:'+spellErr);
 
 //Validating word count
 var status;
@@ -92,7 +92,7 @@ else{
 	status="ACCEPTED";
 	var deduct= (100*spellErr)/testWords.length;
 	marks=(match*100)-deduct;
-	console.log('Similarity between test and base:'+(marks)+'%');
+	console.log('Similarity between test and base:'+(marks*100)+'%');
 	if(marks>=80){
 		note="DISTINCTION DOCUMENT";
 	}
@@ -125,7 +125,7 @@ function createJSON(){
 		},
 		verdict:{
 			testStatus: status,
-			testScore: (match*100),
+			testScore: (marks),
 			testNotes: note
 		}
 	}
